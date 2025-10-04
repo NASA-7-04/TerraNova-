@@ -1,22 +1,24 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { useState } from "react";
 
-export const DropdownMenu = ({ name, value, onChange, children }) => {
+export const DropdownMenu = forwardRef(({ name, value, onChange, children }, ref) => {
     const [selectedLabel, setSelectedLabel] = useState(null);
+
 
 
     const handleItemClick = (childOnClick, label, button) => {
         if (childOnClick) childOnClick();
 
         setSelectedLabel(label);
-    };
+
+        onChange(label);    };
     
     return (
     <div style={{
         display: "flex",
         flexDirection: "column",
         height: "50%",
-    }}>
+    }} ref = {ref}>
         <div style={{
             backgroundColor: "rgba(1,1,1,0)",
             padding: "1rem",
@@ -45,4 +47,4 @@ export const DropdownMenu = ({ name, value, onChange, children }) => {
           })}
         </div>
     </div>
-)};
+)});

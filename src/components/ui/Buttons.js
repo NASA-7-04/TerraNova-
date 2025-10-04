@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import "../../assets/css/stylesheet.css"
 
 export const RadioButton = ({ label, name, value, checked, onChange }) => (
@@ -78,7 +78,7 @@ export const IconButton1 = ({ label, icon, onClick}) => {
 };
 
 // fas fa-
-export const IconButton2 = ({ label, icon, onClick}) => {
+export const IconButton2 = forwardRef(({ label, icon, onClick}, ref) => {
     return (
     <button className = "IconButton" style={{
         textAlign: "center",
@@ -93,4 +93,22 @@ export const IconButton2 = ({ label, icon, onClick}) => {
         <h3 style={{ margin: 0,}}>{label}</h3>
     </button>
 )
-};
+});
+
+
+export const IconButton3 = forwardRef(({ label, icon, onClick}, ref) => {
+    return (
+    <button className = "IconButton" style={{
+        textAlign: "center",
+        border: "none",
+        display: "flex",
+        flexDirection: "row",
+        gap: "1rem",
+        alignItems: "right",
+    }}
+    onClick={onClick}>
+        <i className={icon} style={{ fontSize: "1.5rem",}}></i>
+        <h3 style={{ margin: 0,}}>{label}</h3>
+    </button>
+)
+});

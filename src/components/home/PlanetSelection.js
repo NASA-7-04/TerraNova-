@@ -1,26 +1,21 @@
 import React, { forwardRef, useState, useImperativeHandle } from "react";
-import { CheckboxButton, CheckboxButtonWithDescription, IconButton1, IconButton2, TextButton1 } from "../ui/Buttons";
+import { CheckboxButton, CheckboxButtonWithDescription, IconButton1, IconButton2, IconButton3, TextButton1 } from "../ui/Buttons";
 import { DropdownMenu } from "../ui/MiscellaneousUIElements";
+import { MenuContext } from "./WhiteFrameOnRight";
 
-export const OpenPlanetSelectionWindow = () => {
-    
-}
+export const PlanetSelection = forwardRef(({  visible }, ref) => {
+    const { setPlanet, planet, activeMenu, setActiveMenu } = React.useContext(MenuContext);
 
-export const PlanetSelection = forwardRef(({ name, description }, ref) => {
-
-    const handleSelectPlanet = (planetName) => {
-
-    };
-
-    useImperativeHandle(ref, () => ({
-        handleSelectPlanet: () => handleSelectPlanet(""),
-    }));
-
+    if (!visible) {
+        return null;
+    }
     return (
         <>
-            <div style={{}}>
-                <h1 style={{}}>{name || "Unknown"}</h1>
-            </div><span>{description || "No description available."}</span><div style={{
+            <IconButton3 label={"Back"} icon={"fa-solid fa-arrow-left"} onClick={() => {setActiveMenu("WelcomeWindow")}}></IconButton3>
+            <div style={{
+            }} ref={ref}>
+                <h1 style={{}}>{planet || "Unknown"}</h1>
+            </div><span>{null || "No description available."}</span><div style={{
                 display: "flex",
                 flexDirection: "column",
                 gap: "0.1rem",

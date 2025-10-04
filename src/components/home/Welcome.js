@@ -1,26 +1,20 @@
-import React, { forwardRef, useState, useImperativeHandle } from "react";
+import React, { forwardRef, useState, useImperativeHandle, useEffect } from "react";
 import { CheckboxButton, CheckboxButtonWithDescription, IconButton1, IconButton2, TextButton1 } from "../ui/Buttons";
 import { DropdownMenu } from "../ui/MiscellaneousUIElements";
+import { MenuContext } from "./WhiteFrameOnRight";
 
 
 
-const LoadPlanetInformation = (name) => {
 
-}
+export const WelcomeWindow = forwardRef(({visible }, ref) => {
+    const { setPlanet, planet, activeMenu, setActiveMenu } = React.useContext(MenuContext);
 
-
-const WelcomeWindow = forwardRef(({ }, ref) => {
-    const DropdownMenuRef = React.useRef();
-    const ViewDetailsButtonRef = React.useRef();
-
-    useImperativeHandle(ref, () => ({
-
-    }));
-
+    if (!visible) {
+        return null;
+    }
     return (
         <>
-            <div style={{
-            }}>
+            <div  ref={ref}>
                 <h1 style={{}}>Choose Your Destination</h1>
             </div>
 
@@ -37,7 +31,7 @@ const WelcomeWindow = forwardRef(({ }, ref) => {
                 />
             </div>
 
-            <DropdownMenu name={"Planets"} ref={DropdownMenuRef}>
+            <DropdownMenu name={"Planets"} onChange= {(value) => {setPlanet(value)}}>
                 <TextButton1 label={"Kepler-22b"}></TextButton1>
                 <TextButton1 label={"Trappist-1e"}></TextButton1>
                 <TextButton1 label={"Kepler-452b"}></TextButton1>
@@ -46,9 +40,8 @@ const WelcomeWindow = forwardRef(({ }, ref) => {
             </DropdownMenu>
 
             <IconButton2 label={"View Details"} icon={"fa-solid fa-paper-plane"}
-                onClick={() => {console.log(DropdownMenuRef.current)}} ref={ViewDetailsButtonRef}></IconButton2>
+                onClick={() => {setActiveMenu("PlanetSelection")}}></IconButton2>
         </>
     )
 })
 
-export default WelcomeWindow;
