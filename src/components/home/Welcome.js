@@ -1,92 +1,56 @@
-import { CheckboxButton, CheckboxButtonWithDescription } from "../miscellaneous/Buttons";
+import React, { forwardRef, useState, useImperativeHandle } from "react";
+import { CheckboxButton, CheckboxButtonWithDescription, IconButton1, IconButton2, TextButton1 } from "../ui/Buttons";
+import { DropdownMenu } from "../ui/MiscellaneousUIElements";
 
 
 
-const WelcomeWindow = () => {
+const LoadPlanetInformation = (name) => {
+
+}
+
+
+const WelcomeWindow = forwardRef(({ }, ref) => {
+    const DropdownMenuRef = React.useRef();
+    const ViewDetailsButtonRef = React.useRef();
+
+    useImperativeHandle(ref, () => ({
+
+    }));
 
     return (
-        <div style={{
-            backgroundColor: "rgba(0,0,0,0.5)",
-            height: "100%",
-            width: "100%",
-            position: "fixed",
-
-        }}>
+        <>
             <div style={{
-                backgroundColor: "rgba(255, 255, 255, 1)",
-                color: "rgba(0,0,0,1)",
-                height: "100%",
-                width: "25%",
-                position: "fixed",
-                minWidth: "360px",
-                maxWidth: "480px",
-                padding: "2rem",
-                right: "0%",
+            }}>
+                <h1 style={{}}>Choose Your Destination</h1>
+            </div>
+
+            <div style={{
                 display: "flex",
                 flexDirection: "column",
-                gap: "1rem",
+                gap: "0.1rem",
             }}>
-                <div style={{
-                }}>
-                    <h1 style={{}}>Choose Your Destination</h1>
-                </div>
-
-                <div style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "0.1rem",
-                }}>
-                    <CheckboxButtonWithDescription
-                        description={"Show Fast Travel Locations"}
-                    />
-                    <CheckboxButtonWithDescription
-                        description={"Show Habitable Zones"}
-                    />
-                </div>
-
-                <div style={{
-                    display: "flex",
-                    flexDirection: "column",
-                }}>
-                    <div style={{
-                        backgroundColor: "rgba(1,1,1,0)",
-                        padding: "1rem",
-                    }}>
-
-                        <h1 style={{color : "black", margin : 0}}>Planets</h1>
-                    </div>
-                    <div style={{
-                        backgroundColor: "rgba(1, 1, 1, 0.02)",
-                        width: "100%",
-                        display: "flex",
-                        flexDirection: "column",
-                    }}>
-                        <button style={{
-                            borderBottom: "0.1rem solid rgba(196, 196, 196, 1)",
-                            backgroundColor: "rgba(22, 22, 22, 1)",
-                        textAlign: "left",
-                        }}>
-                            <a style={{color : "white", margin : 0}}>Kepler-22b</a>
-                        </button>
-
-                        <button style={{
-                            borderBottom: "0.1rem solid rgba(196, 196, 196, 1)",
-                            textAlign: "left",
-                        }}>
-                            <a style={{color : "black", margin : 0}}>Trappist-1e</a>
-                        </button>
-
-                        <button style={{
-                            borderBottom: "0.1rem solid rgba(196, 196, 196, 1)",
-                            textAlign: "left",
-                        }}>
-                            <a style={{color : "black", margin : 0}}>Mars</a>
-                        </button>
-                    </div>
-                </div>
+                <CheckboxButtonWithDescription
+                    description={"Show Fast Travel Locations"}
+                />
+                <CheckboxButtonWithDescription
+                    description={"Show Habitable Zones"}
+                />
             </div>
-        </div>
+
+            <DropdownMenu name={"Planets"} ref={DropdownMenuRef}>
+                <TextButton1 label={"Kepler-22b"}></TextButton1>
+                <TextButton1 label={"Trappist-1e"}></TextButton1>
+                <TextButton1 label={"Kepler-452b"}></TextButton1>
+                <TextButton1 label={"Proxima Centauri b"}></TextButton1>
+                <TextButton1 label={"55 Cancri e"}></TextButton1>
+                <TextButton1 label={"Kepler-69c"}></TextButton1>
+                <TextButton1 label={"Mars"}></TextButton1>
+            </DropdownMenu>
+
+            <IconButton2 label={"View Details"} icon={"fa-solid fa-paper-plane"}
+                onClick={() => {console.log(DropdownMenuRef.current)}} ref={ViewDetailsButtonRef}></IconButton2>
+        </>
     )
-}
+})
 
 export default WelcomeWindow;

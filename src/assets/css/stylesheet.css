@@ -4,5 +4,13 @@ button {
   justify-content: start;
   padding: 1rem;
   border: none;
+  background: none;
   text-decoration: none;
+}
+
+.IconButton:hover,
+.IconButton:focus,
+.IconButton:active {
+  background: rgb(17, 17, 17);
+  color: rgb(255,255,255);
 }
