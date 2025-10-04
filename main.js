@@ -6,8 +6,6 @@ function init(parent) {
   const app = express();
   const corsOptions = {
     origin: [
-      'http://localhost:8080',
-      'http://192.168.0.230:8080',
       "https://gengine.co.kr"
     ],
     credentials: true,

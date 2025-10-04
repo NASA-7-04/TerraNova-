@@ -18,7 +18,7 @@ export  function createScene(engine, canvas) {
   new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
 
   // Add Texture
-  const result = BABYLON.ImportMeshAsync("./game/assets/models/Planets.glb", scene);
+  const result = BABYLON.ImportMeshAsync("./game/assets/models/Skybox.glb", scene);
     result.then((meshes) => {
         meshes.meshes[0].position = new BABYLON.Vector3(0, 0, 0);
         meshes.meshes[0].scaling = new BABYLON.Vector3(2, 2, 2);
