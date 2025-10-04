@@ -1,4 +1,5 @@
-
+// App.js
+import './assets/css/stylesheet.css';
 import './assets/css/App.css';
 import WelcomeWindow from './components/home/Welcome.js';
 
