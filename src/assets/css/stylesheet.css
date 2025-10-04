@@ -1,0 +1,8 @@
+button {
+  margin: 0;
+  font-family : "Inter", Helvetica, sans-serif;
+  justify-content: start;
+  padding: 1rem;
+  border: none;
+  text-decoration: none;
+}

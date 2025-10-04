@@ -63,28 +63,22 @@ const WelcomeWindow = () => {
                     }}>
                         <button style={{
                             borderBottom: "0.1rem solid rgba(196, 196, 196, 1)",
-                            padding: "1rem",
                             backgroundColor: "rgba(22, 22, 22, 1)",
-                            border: "none",
-                            textDecoration: "none",
+                        textAlign: "left",
                         }}>
                             <a style={{color : "white", margin : 0}}>Kepler-22b</a>
                         </button>
 
                         <button style={{
                             borderBottom: "0.1rem solid rgba(196, 196, 196, 1)",
-                            padding: "1rem",
-                            border: "none",
-                            textDecoration: "none",
+                            textAlign: "left",
                         }}>
                             <a style={{color : "black", margin : 0}}>Trappist-1e</a>
                         </button>
 
                         <button style={{
                             borderBottom: "0.1rem solid rgba(196, 196, 196, 1)",
-                            padding: "1rem",
-                            border: "none",
-                            textDecoration: "none",
+                            textAlign: "left",
                         }}>
                             <a style={{color : "black", margin : 0}}>Mars</a>
                         </button>
