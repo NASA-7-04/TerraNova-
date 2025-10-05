@@ -5,13 +5,15 @@ import * as BABYLON from 'babylonjs';
 
 export let objects = {};
 
+export let currentCamera = null;
+
 export class GameObject {
     constructor(name, mesh) {
         // Identical to Roblox
         this.name = name;
         this.meshId = mesh.meshId || null;
-        this.meshContent = null;
-        this.primaryMesh = null;
+        this.meshContent = mesh.mesh || null;
+        this.primaryMesh = mesh.mesh || null;
         this.pickMesh = null;
         this.position = mesh.position || new BABYLON.Vector3(0, 0, 0);
         this.orientation = mesh.rotation || new BABYLON.Vector3(0, 0, 0);
@@ -32,7 +34,6 @@ export class GameObject {
     render() {
         const scene = SceneManager.getScene();
         BABYLON.ImportMeshAsync(this.meshId, scene).then((meshes) => {
-            console.log(meshes);
             this.meshContent = meshes;
             this.primaryMesh = meshes.meshes[0];
             this.pickMesh = meshes.meshes[1];
@@ -57,16 +58,30 @@ export class GameObject {
     }
     setPosition(newPosition) {
         this.position = newPosition;
+        if (!this.primaryMesh) return;
         this.primaryMesh.position = newPosition;
     }
     setOrientation(newOrientation) {
         this.orientation = newOrientation;
+        if (!this.primaryMesh) return;
         this.primaryMesh.rotation = newOrientation;
     }
     setSize(newSize) {
         this.size = newSize;
         this.primaryMesh.scaling = newSize;
     }
+    setTransparency(transparency) {
+        if (!this.primaryMesh) return;
+        this.primaryMesh.visibility = transparency;
+    }
+    setInteractive(state) {
+        this.interactive = state;
+        if (!this.meshContent) return;
+        for (let mesh of this.meshContent.meshes) {
+            mesh.isPickable = state;
+        }
+    }
+
     onMouseClick = {
         connect: (callback) => {
             if (this.interactive) {
@@ -84,6 +99,15 @@ export class GameObject {
             }
         }
     }
+    dispose() {
+        if (this.primaryMesh) {
+            this.primaryMesh.dispose();
+        }
+        if (this.pickMesh) {
+            this.pickMesh.dispose();
+        }
+        delete objects[this.name];
+    }
 }
 
 
@@ -99,6 +123,7 @@ export class GameCamera {
         if (SceneManager.getScene()) {
             this.render();
         }
+        currentCamera = this;
         return this;
     }
     render() {

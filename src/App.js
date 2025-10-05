@@ -1,22 +1,27 @@
 // App.js
 import './assets/css/stylesheet.css';
 import './assets/css/App.css';
-import WelcomeWindow from './components/home/Welcome.js';
-import {PlanetSelection} from './components/home/PlanetSelection.js';
-import { Menu1, WhiteFrameOnRight } from './components/home/WhiteFrameOnRight.js';
-import {GameFrame} from './game/GameScene.js';
+import { screen1 } from './scenes/Screen1.js';
+import { screen2 } from './scenes/Screen2.js';
+import React, { useState } from 'react';
+import { loadingScreen } from './scenes/LoadingScreen.js';
+
+let _forceRender = () => {};
+
+export function forceRender() {
+  _forceRender();
+}
 
 function App() {
+  const [_, update] = useState(0);
+
+  _forceRender = () => update(x => x + 1);
+
   return (
     <div className="App">
-      <Menu1 />
-      <div style = {{
-        width : "75%",
-        height : "100vh",
-        zIndex : 1,
-      }}>
-      <GameFrame />
-      </div>
+      {screen1.render()}
+      {screen2.render()}
+      {loadingScreen.render()}
     </div>
   );
 }

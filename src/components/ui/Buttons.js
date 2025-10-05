@@ -60,6 +60,43 @@ export const TextButton1 = ({ label, onClick, isSelected}) => {
 )
 };
 
+export const TextButtonWithDescription = ({ label, description, icon, onClick,}) => {
+    return (
+    <button style={{
+        borderBottom: "0.1rem solid rgba(196, 196, 196, 1)",
+        textAlign: "left",
+        background: "none",
+        backgroundColor:  "rgba(0,0,0,0)",
+        display: "flex",
+        flexDirection: "row",
+    }}
+    onClick={onClick}>
+        {icon && <i className={icon} style={{ fontSize: "1.5rem",}}></i>}
+        <h3 style={{ color:  "black", margin: 0, justifySelf :"flex-start"}}>{label}</h3>
+        <span style={{ marginLeft: "1rem",  justifySelf :"flex-end"}}>{description}</span>
+    </button>
+)
+};
+
+export const TextButtonWithDescriptionSmall = ({ label, description, icon, onClick,}) => {
+    return (
+    <button style={{
+        borderBottom: "0.1rem solid rgba(196, 196, 196, 1)",
+        textAlign: "left",
+        background: "none",
+        backgroundColor:  "rgba(0,0,0,0)",
+        display: "flex",
+        flexDirection: "row",
+        padding: "0",
+    }}
+    onClick={onClick}>
+        {icon && <i className={icon} style={{ fontSize: "1.5rem",}}></i>}
+        <h3 style={{ color:  "black", margin: 0, justifySelf :"flex-start"}}>{label}</h3>
+        <span style={{ marginLeft: "1rem",  justifySelf :"flex-end"}}>{description}</span>
+    </button>
+)
+};
+
 export const IconButton1 = ({ label, icon, onClick}) => {
     return (
     <button className = "IconButton" style={{
@@ -104,7 +141,7 @@ export const IconButton3 = forwardRef(({ label, icon, onClick}, ref) => {
         display: "flex",
         flexDirection: "row",
         gap: "1rem",
-        alignItems: "right",
+        alignItems: "center",
     }}
     onClick={onClick}>
         <i className={icon} style={{ fontSize: "1.5rem",}}></i>

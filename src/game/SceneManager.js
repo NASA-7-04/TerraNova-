@@ -1,5 +1,4 @@
 //SceneManager.js
-import {initialize} from './Initialize';
 let scene = null;
 
 export const SceneManager = {
@@ -11,6 +10,5 @@ export const SceneManager = {
   },
   init(newScene) {
     scene = newScene;
-    initialize();
   }
 };

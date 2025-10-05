@@ -9,9 +9,9 @@ import 'babylonjs-gui';
 import 'babylonjs-serializers';
 import { AdvancedDynamicTexture, Control, TextBlock } from 'babylonjs-gui';
 import { createScene } from './CreateScene';
+import { SceneManager } from './SceneManager';
 
-
-export function GameFrame({ onSceneReady }) {
+export function GameFrame({ onSceneReady, sceneToLoad }) {
   const canvasRef = useRef(null);
   const engineRef = useRef(null);
   const sceneRef = useRef(null);
@@ -23,6 +23,9 @@ export function GameFrame({ onSceneReady }) {
     engineRef.current = engine;
 
     const scene =  createScene(engine, canvasRef.current);
+    if (sceneToLoad) {
+      sceneToLoad();
+    }
     sceneRef.current = scene;
 
     // optional callback to parent (expose scene/engine)

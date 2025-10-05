@@ -19,3 +19,7 @@ export function createScene(engine, canvas) {
 
     return scene;
 }
+
+export function loadScene(initializeFunction) {
+    initializeFunction();
+}
