@@ -122,6 +122,12 @@ export class Building {
 
 export class Crew {
   constructor(data = {}) {
+    /*
+    Mission operators and scientists who run and maintain the habitat.
+    Each crew member consumes ~0.84 kg O₂, 3 L water, 0.6 kg food, and ~1 kWh power per day.
+    If unsupported, Health drops −2 per day (stress, microinjuries, infection risk) and Morale drops −2 per day (isolation, monotony).
+    Metabolism and stress load can shift ±15% depending on local gravity and temperature.
+    */
     this.id = data.id || "crew_member";
     this.name = data.name || "Crew Member";
     this.role = data.role || "generalist";
@@ -525,6 +531,12 @@ export const Planets = {
 }
 
 export const COMPONENT_DATA = {
+  /*
+  Pressurized living structure with
+  walls, roof, climate control, and airlocks.
+  Baseline ~2 kWh/day for ventilation & control.
+  Houses up to 4 crew.
+  */
   hab_dome: {
     id: "hab_dome",
     name: "Habitat Dome (required)",
@@ -535,6 +547,12 @@ export const COMPONENT_DATA = {
     size: {x : 2, y: 2, z: 2},
     model : "./game/assets/models/house1.glb",
   },
+  /*
+  Thermal regulation & HVAC assist.
+  Saves ~20% HVAC energy in extreme conditions;
+  ~1 kWh/day baseline.
+  Efficiency may change based on planetary conditions.
+  */
   therm_x: {
     id: "therm_x", 
     name: "Therm-X (Thermal Control)",
@@ -542,12 +560,22 @@ export const COMPONENT_DATA = {
     dailyEffects: { Power: "- hvac_base * planet.hvac * 0.8" },
     notes: "Reduces HVAC energy ~20%."
   },
+  /*
+  Life Support Module (O₂ & water recycling).
+  Produces ~+1 kg O₂/day, recycles ~+2 L water/day;
+  consumes ~5 kWh/day (ISS OGS/WRS mid-range).
+  */
   lss_bio: {
     id: "lss_bio",
     name: "LSS-Bio", 
     cost: 15,
     dailyEffects: { O2: 1.0, H2O: 2.0, Power: -5 }
   },
+  /*
+  Bulk water supply for drinking & shielding.
+  ~0.5 kWh/day standby;
+  provides ~20 cm water-equivalent radiation protection.
+  */
   water_tank: {
     id: "water_tank",
     name: "Water Tank (200 L)",
@@ -558,6 +586,12 @@ export const COMPONENT_DATA = {
     size: {x : 2, y: 2, z: 2},
     model : "./game/assets/models/WaterTank.glb",
   },
+  /*
+  Layered regolith/water shielding.
+  Cuts daily radiation dose 60–80%;
+  ~2 kWh/day for monitoring & seals.
+  Efficiency can vary with local planetary conditions.
+  */
   shield_reg: {
     id: "shield_reg",
     name: "Shield-Reg",
@@ -567,6 +601,11 @@ export const COMPONENT_DATA = {
     size: {x : 1, y:1, z: 1},
     model : "./game/assets/models/EVALock.glb",
   },
+  /*
+  Energy buffer.
+  Stores surplus 50 kWh power for nights or storms
+  no daily production but prevents blackouts.
+  */
   battery: {
     id: "battery",
     name: "Battery Pack (50 kWh)",
@@ -575,7 +614,13 @@ export const COMPONENT_DATA = {
     size: {x : 1, y: 1, z: 1},
     model : "./game/assets/models/Electricity.glb",
   },
-  
+  /*
+  Photovoltaic power.
+  ~6 kWh/day at 1 AU;
+  adjust by stellar flux (Splanet).
+  Vulnerable to storms/dust.
+  Efficiency may change based on planetary conditions.
+  */
   solar_array: {
     id: "solar_array",
     name: "Solar Array (~20 m²)",
@@ -584,6 +629,12 @@ export const COMPONENT_DATA = {
     size: {x : 1, y: 1, z: 1},
     model : "./game/assets/models/SolarPanel.glb",
   },
+  /*
+  Reliable continuous power source.
+  ~15 kWh/day assumed for game;
+  RTG clusters or small reactors.
+  Works independent of sunlight.
+  */
   n_gen: {
     id: "n_gen",
     name: "N-Gen (RTG/Nuclear equiv.)",
@@ -592,7 +643,11 @@ export const COMPONENT_DATA = {
     size: {x : 1, y:1, z: 1},
     model : "./game/assets/models/Ngen.glb",
   },
-  
+  /*
+  Safe exit for outside tasks.
+  ~0.5 kWh standby + ~2 kWh per EVA cycle (pumps/heaters).
+  Required for repairs & exploration.
+  */
   airlock: {
     id: "airlock",
     name: "EVA Airlock",
@@ -602,12 +657,21 @@ export const COMPONENT_DATA = {
     size: {x : 1, y:1, z: 1},
     model : "./game/assets/models/EVALock.glb",
   },
+  /*
+  Maintenance & fabrication space.
+  ~2 kWh/day;
+  allows repairing broken modules.
+  */
   workshop: {
     id: "workshop",
     name: "Workshop",
     cost: 8,
     dailyEffects: { Power: -2 }
   },
+  /*
+  Spare parts & consumables.
+  Enables 3 repairs or medical/emergency fixes.
+  */
   spares: {
     id: "spares",
     name: "Spares Pack",
@@ -617,7 +681,10 @@ export const COMPONENT_DATA = {
     size: {x : 1, y:1, z: 1},
     model : "./game/assets/models/TreasureBox.glb",
   },
-  
+  /*
+  Produces ~+0.5 kg food & +0.2 kg O₂/day;
+  consumes ~3 kWh & ~1 L water/day.
+  */
   agri_pod: {
     id: "agri_pod",
     name: "Agri-Pod (Small Greenhouse)",
@@ -626,7 +693,10 @@ export const COMPONENT_DATA = {
     size: {x : 2, y:2, z: 2},
     model : "./game/assets/models/PlantingMachine.glb",
   },
-  
+  /*
+  Personal sleeping pods.
+  ~1 kWh/day; +2 morale/crew/day.
+  */
   quarters: {
     id: "quarters",
     name: "Private Quarters",
@@ -635,6 +705,11 @@ export const COMPONENT_DATA = {
     size: {x : 8, y:8, z: 8},
     model : "./game/assets/models/LargeHouse.glb",
   },
+  /*
+  Toilet and wash facilities.
+  Uses ~2 L water/crew/day, ~1 kWh/day;
+  +3 crew health per day.
+  */
   bathroom: {
     id: "bathroom",
     name: "Bathroom / Hygiene",
@@ -643,6 +718,10 @@ export const COMPONENT_DATA = {
     size: {x : 8, y:8, z: 8},
     model : "./game/assets/models/ContainerBox.glb",
   },
+  /*
+  Shared dining and meeting space.
+  ~2 kWh/day, ~1 L water/crew/day, small food overhead but +5 group morale/day.
+  */
   community: {
     id: "community",
     name: "Community / Mess",
@@ -650,7 +729,11 @@ export const COMPONENT_DATA = {
     dailyEffects: { Power: -2, H2O: "-1_per_crew", Food: "-0.1_per_crew", Morale: "+5_team" },
     size: {x : 8, y:8, z: 8},
     model : "./game/assets/models/LargeHouse.glb",
-  },
+  
+  /*
+  Gym & resistance exercise.
+  \~1 kWh/day, +0.1 kg food/crew/day; +3 health & +2 morale/crew/day.
+  */},
   exercise: {
     id: "exercise",
     name: "Exercise Area",
@@ -659,6 +742,10 @@ export const COMPONENT_DATA = {
     size: {x : 8, y:8, z: 8},
     model : "./game/assets/models/LargeHouse.glb",
   },
+  /*
+  Treatment & emergency care. 
+  ~2 kWh/day standby, ~5 kWh when used; restores +10 health on events.
+  */
   medbay: {
     id: "medbay",
     name: "Medical Bay",
@@ -666,18 +753,27 @@ export const COMPONENT_DATA = {
     dailyEffects: { Power: -2 },
     onUse: { Power: -5, Health: "+10_target" }
   },
+  /*
+  Contact with Earth & support. ~1 kWh/day; +4 morale/day.
+  */
   comms: {
     id: "comms",
     name: "Communication Hub",
     cost: 5,
     dailyEffects: { Power: -1, Morale: "+4_team" }
   },
+  /*
+  Exterior viewing port. ~0.5 kWh/day; +2 morale/day.
+  */
   window: {
     id: "window",
     name: "Observation Window",
     cost: 3,
     dailyEffects: { Power: -0.5, Morale: "+2_team" }
   },
+  /*
+  Small leisure garden. −3 kWh/day, −1 L water/day, +0.1 kg O₂/day, +5 morale/day.
+  */
   green_relax: {
     id: "green_relax",
     name: "Greenhouse Relax Zone",
