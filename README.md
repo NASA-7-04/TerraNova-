@@ -1,3 +1,8 @@
+# Project Links
+https://www.notion.so/NASA-Space-Apps-Challenge-22db6ce39278807cbaf5d9c470e9196e
+
+https://www.figma.com/design/bIT17l6tnfMoShIZKlQA2A/TerraNova---Final-UI-Layout?node-id=28-218&t=d9PKZGjG8SMNPiKG-1
+
 
 # Simulator1
 =======
