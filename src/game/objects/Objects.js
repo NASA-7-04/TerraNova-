@@ -1087,6 +1087,7 @@ export const createPlanetWithEvents = (planetId) => {
 export class Game {
   constructor(planet,) {
     this.planet = planet;
+    this.points = 100;
     this.city = new City();
     this.components = [];
     this.crews = [];
@@ -1120,6 +1121,12 @@ export class Game {
   }
 
   async purchaseComponent(component) {
+    if (!component) return;
+    if (this.points < component.cost) {
+      alert("Not enough points to purchase this component.");
+      return;
+    }
+    this.points -= component.cost;
     // Preview component
     this.previewer.beginPreview(component);
     await this.previewer.waitUntilendOfPreview();
@@ -1165,7 +1172,7 @@ export class Game {
       return;
     }
     
-    // Apply event
+    // Apply Render
     forceRender();
   }
   getCurrentEvent() {

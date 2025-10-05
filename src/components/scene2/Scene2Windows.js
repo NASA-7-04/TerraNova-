@@ -104,6 +104,9 @@ export const StatusWindow = ({ visible }) => {
         StatusIndicator.push(<TextButtonWithDescriptionSmall
             key={"Crews"} label={game.value.crews.length} description={"Crews"}
             onClick={() => { }}></TextButtonWithDescriptionSmall>);
+        StatusIndicator.push(<TextButtonWithDescriptionSmall
+            key={"Points"} label={game.value.points} description={"Points"}
+            onClick={() => { }}></TextButtonWithDescriptionSmall>);
 
     if (!visible) {
         return null;
